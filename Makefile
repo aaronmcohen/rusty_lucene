@@ -20,15 +20,15 @@ setup_jvm: create_build_area ## Setup a Lucene compatible JVM. Currently JAava 1
 	  curl -L ${JVM_URL_LOCATION_PREFIX}/$JVM_URL_LOCATION_WINDOWS --output  ${BUILD_DEP_DIR}/java.zip
 		powershell -Command Expand-Archive -Path${BUILD_DEP_DIR}/java.zip  -DestinationPath ${BUILD_DEP_DIR}
 		@rm  ${BUILD_DEP_DIR}/java.zip
-  else
-	  UNAME_S := $(shell uname -s)
-    ifeq ($(UNAME_S),Linux)
+	else
+		UNAME_S := $(shell uname -s)
+		ifeq ($(UNAME_S),Linux)
 			@curl -L ${JVM_URL_LOCATION_PREFIX}/$JVM_URL_LOCATION_LINUX --output  ${BUILD_DEP_DIR}/java.tar.gz
 			@tar -zxvf ${BUILD_DEP_DIR}/java.tar.gz  -C  ${BUILD_DEP_DIR}
 			@rm  ${BUILD_DEP_DIR}/java.tar.gz
-    endif
-    ifeq ($(UNAME_S),Darwin)
-    	@curl -L ${JVM_URL_LOCATION_PREFIX}/$JVM_URL_LOCATION_MACOS --output  ${BUILD_DEP_DIR}/java.tar.gz
+		endif
+		ifeq ($(UNAME_S),Darwin)
+		  @curl -L ${JVM_URL_LOCATION_PREFIX}/$JVM_URL_LOCATION_MACOS --output  ${BUILD_DEP_DIR}/java.tar.gz
 			@tar -zxvf ${BUILD_DEP_DIR}/java.tar.gz  -C  ${BUILD_DEP_DIR}
 			@rm  ${BUILD_DEP_DIR}/java.tar.gz
 		endif
