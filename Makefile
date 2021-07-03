@@ -35,6 +35,8 @@ setup_jvm: create_build_area ## Setup a Lucene compatible JVM. Currently JAava 1
 	endif
 	@mv ${BUILD_DEP_DIR}/jdk*  ${BUILD_DEP_DIR}/jdk
 
+setup_dependencies: setup_jvm ##Download and install all pre-requisites for building and testing
+
 clean: ## cleanup all build artifacts
 	@rm -rf  $(CURDIR)/${BUILD_DIR}
 
