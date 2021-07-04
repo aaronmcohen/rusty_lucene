@@ -18,7 +18,7 @@ create_build_area:  ## Creates a build area local in the current directory
 setup_jvm: create_build_area ## Setup a Lucene compatible JVM. Currently JAava 11 LTS
 	@echo "Downloading and setting up JDK 11"
 	echo ${OS}
-ifeq ($(OS),windows_nt)
+ifeq ($(OS),Windows_NT)
 	curl -L ${JVM_URL_LOCATION_PREFIX}/${JVM_URL_LOCATION_WINDOWS} --output  ${BUILD_DEP_DIR}/java.zip
 	powershell -Command Expand-Archive -Path${BUILD_DEP_DIR}/java.zip  -DestinationPath ${BUILD_DEP_DIR}
 	rm  ${BUILD_DEP_DIR}/java.zip
