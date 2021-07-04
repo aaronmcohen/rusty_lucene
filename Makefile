@@ -20,7 +20,7 @@ setup_jvm: create_build_area ## Setup a Lucene compatible JVM. Currently JAava 1
 	echo ${OS}
 ifeq ($(OS),Windows_NT)
 	curl -L ${JVM_URL_LOCATION_PREFIX}/${JVM_URL_LOCATION_WINDOWS} --output  ${BUILD_DEP_DIR}/java.zip
-	powershell -Command Expand-Archive -Path${BUILD_DEP_DIR}/java.zip  -DestinationPath ${BUILD_DEP_DIR}
+	powershell -Command Expand-Archive -Path ${BUILD_DEP_DIR}/java.zip  -DestinationPath ${BUILD_DEP_DIR}
 	rm  ${BUILD_DEP_DIR}/java.zip
 endif
 ifeq ($(OS),linux)
