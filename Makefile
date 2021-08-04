@@ -7,6 +7,7 @@ JVM_URL_LOCATION_PREFIX="https://github.com/AdoptOpenJDK/openjdk11-binaries/rele
 JVM_URL_LOCATION_MACOS="jdk-11.0.11%2B9_openj9-0.26.0/OpenJDK11U-jdk_x64_mac_openj9_11.0.11_9_openj9-0.26.0.tar.gz"
 JVM_URL_LOCATION_WINDOWS="jdk-11.0.11%2B9_openj9-0.26.0/OpenJDK11U-jdk_x64_windows_openj9_11.0.11_9_openj9-0.26.0.zip"
 JVM_URL_LOCATION_LINUX="jdk-11.0.11%2B9_openj9-0.26.0/OpenJDK11U-jdk_x64_linux_openj9_11.0.11_9_openj9-0.26.0.tar.gz"
+MAVEN_URL_LOCATION="https://mirror.olnevhost.net/pub/apache/maven/maven-3/3.8.1/binaries/apache-maven-3.8.1-bin.tar.gz"
 OS?=$(shell uname -s | tr A-Z a-z)
 
 create_build_area:  ## Creates a build area local in the current directory
@@ -25,17 +26,25 @@ ifeq ($(OS),Windows_NT)
 endif
 ifeq ($(OS),linux)
 	@curl -L ${JVM_URL_LOCATION_PREFIX}/${JVM_URL_LOCATION_LINUX} --output  ${BUILD_DEP_DIR}/java.tar.gz
-	@tar -zxvf ${BUILD_DEP_DIR}/java.tar.gz  -C  ${BUILD_DEP_DIR}
+	@tar -zxf ${BUILD_DEP_DIR}/java.tar.gz  -C  ${BUILD_DEP_DIR}
 	@rm  ${BUILD_DEP_DIR}/java.tar.gz
 endif
 ifeq ($(OS),darwin)
 	@curl -L ${JVM_URL_LOCATION_PREFIX}/${JVM_URL_LOCATION_MACOS} --output  ${BUILD_DEP_DIR}/java.tar.gz
-	@tar -zxvf ${BUILD_DEP_DIR}/java.tar.gz  -C  ${BUILD_DEP_DIR}
+	@tar -zxf ${BUILD_DEP_DIR}/java.tar.gz  -C  ${BUILD_DEP_DIR}
 	@rm  ${BUILD_DEP_DIR}/java.tar.gz
 endif
 	@mv ${BUILD_DEP_DIR}/jdk*  ${BUILD_DEP_DIR}/jdk
 
-setup_dependencies: setup_jvm ##Download and install all pre-requisites for building and testing
+setup_maven: setup_jvm ## Setup maven for building java projects
+	@echo "Downloading and setting up Macen 3.8.1"
+	@curl -L ${MAVEN_URL_LOCATION} --output ${BUILD_DEP_DIR}/maven.tar.gz
+	@tar -zxf ${BUILD_DEP_DIR}/maven.tar.gz -C ${BUILD_DEP_DIR}
+	@rm ${BUILD_DEP_DIR}/maven.tar.gz
+	@mv ${BUILD_DEP_DIR}/apache-maven*  ${BUILD_DEP_DIR}/apache-maven
+
+setup_dependencies: setup_maven ### Download and install all pre-requisites for building and testing
+	@echo "Installed Dependencies"
 
 clean: ## cleanup all build artifacts
 	@rm -rf  $(CURDIR)/${BUILD_DIR}
