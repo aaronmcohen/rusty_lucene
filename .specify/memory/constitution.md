@@ -1,42 +1,57 @@
 # Rusty Lucene Constitution
 
-## Core Principles
-
-### Compatibility & JNI Exposure
-Every feature must expose a stable API via Java Native Interface (JNI) to ensure 100% compatibility with existing Apache Lucene tests without alteration.
+## 🎯 Core Principles
 
 ### Minimal Dependency Baseline
-Project dependencies are limited strictly to essential libraries only. No unnecessary transitive dependencies shall be introduced.
+* **Strict Limits**: Project dependencies are restricted to essential libraries.
+* **No Bloat**: Avoid introducing unnecessary transitive dependencies.
 
-### Security By Design
-Security considerations (e.g., validation, input sanitization, privilege separation) are mandated at the design phase for all new functionality.
+### Descriptive Commit Discipline
+* **Atomic Commits**: Each commit represents a single logical change.
+* **Imperative Mood**: Use clear, actionable subject lines (e.g., `Add X`, `Fix Y`).
+* **Traceability**: Reference associated tickets or issue numbers in descriptions.
+* **Linear History**: Rebase feature branches before merging to eliminate merge commits.
 
-### Descriptive Git Commit Discipline
-Each commit must represent a single logical change with a clear subject line. Include references to associated tickets or issues and employ imperative mood (`Add X`, `Fix Y`). Rebase before merging; retain clean history.
+## 🛠️ Development Workflow
 
-## Additional Constraints (Security & Performance)
-- All cryptographic operations must use formally audited crates.
-- Memory allocations exceeding 10MB per call shall be reviewed and optimized.
+### Specification & Feature Branching
+* **Isolation**: Author all new specifications and features on dedicated branches (e.g., `spec/issue-123`).
+* **Integration**: Open a Pull Request (PR) against `main` rather than pushing directly.
 
-## Development Workflow & Review Process
-### Specification Authoring
-**All new specs should be authored on their own branch.** Create a dedicated feature branch (e.g., `spec/issue-123`) for each specification, develop changes there, then open a Pull Request against `main`.
+### Continuous Integration (CI)
+* **Hard Gates**: Automated linting, type checking, and testing must pass.
+* **Zero Warnings**: Treat code analysis warnings as blocking errors.
 
-- **Git Flow**: Use feature branches, rebase onto main, then open a PR for each change.
-- **CI Checks**: Automated linting, type checking, unit tests, and integration tests must pass before merge.
-- **Self‑Review**: As the sole developer, perform thorough code review on every PR (review checklist includes compile success, test coverage, documentation updates).
+### Solo Review Process
+* **Self-Audits**: Perform a comprehensive review of your own PRs before merging.
+* **Checklist**: Verify compilation success, test coverage, and documentation accuracy.
 
-## Governance (Solo Developer)
+## 💡 Best Practices
+
+### Code Hygiene
+* **Proactive Refactoring**: Clean technical debt immediately before adding new features.
+* **Document as You Go**: Update inline comments and documentation alongside code changes.
+* **Idempotent Scripts**: Ensure all setup and build scripts can run repeatedly without errors.
+
+### Version Control & Branch Management
+* **Frequent Commits**: Save work locally and often to avoid massive, unmanageable PRs.
+* **Descriptive Branch Names**: Format branches using strict prefixes (e.g., `feat/`, `fix/`, `docs/`).
+* **Stale Branch Cleanup**: Delete remote and local feature branches immediately after merging.
+
+### Dependency Management
+* **Pin Versions**: Lock exact dependency versions to prevent unexpected breaking changes.
+* **Routine Audits**: Run security vulnerability scans weekly on all third-party libraries.
+
+## ⚖️ Governance & Compliance
+
 ### Amendment Process
-Because there is a single maintainer, any change to this constitution is approved by the author's own decision. Document the rationale in commit messages or an amendment log.
+* **Sole Authority**: The single maintainer approves all changes to this constitution.
+* **Transparency**: Document the rationale in the commit messages or an amendment log.
+* **Tracking**: Maintain a `CHANGELOG.md` entry for every operational change.
 
-### Compliance Review
-- **Pre‑merge**: Run all CI checks locally; ensure 100% test pass and no lint warnings.
-- **Weekly Health Check**: Verify that commit history remains clean (no merge commits, consistent formatting).
+### Compliance Enforcement
+* **Automation**: Use local pre-commit hooks or aliases to enforce commit structures.
+* **Weekly Audits**: Periodically verify that the history remains clean and linear.
 
-### Enforcement
-- Enforce the Git Commit Discipline strictly via pre‑commit hook or local alias.
-- Treat any violation of CI failures as blocking – fix before pushing to main.
-- Maintain a CHANGELOG entry for each amendment.
 
 **Version**: 1.0.3 | **Ratified**: 2025-06-18 | **Last Amended**: 2026-06-20
