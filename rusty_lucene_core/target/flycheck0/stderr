@@ -1,0 +1,39 @@
+    Blocking waiting for file lock on build directory
+   0.334249291s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint: stale: changed "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/src/lib.rs"
+   0.334260250s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint:           (vs) "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/target/debug/.fingerprint/rusty_lucene_core-5c7f3b6e7be3dd52/dep-lib-rusty_lucene_core"
+   0.334264166s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 1785449775, nanos: 577146666 } < FileTime { seconds: 1785450606, nanos: 386767398 }
+   0.334334625s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint: fingerprint dirty for rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core)/Check { test: false }/TargetInner { name_inferred: true, ..: lib_target("rusty_lucene_core", ["lib"], "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/src/lib.rs", Edition2024) }
+   0.334345291s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/target/debug/.fingerprint/rusty_lucene_core-5c7f3b6e7be3dd52/dep-lib-rusty_lucene_core", reference_mtime: FileTime { seconds: 1785449775, nanos: 577146666 }, stale: "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/src/lib.rs", stale_mtime: FileTime { seconds: 1785450606, nanos: 386767398 } }))
+   0.334678250s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint: stale: changed "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/src/lib.rs"
+   0.334680458s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint:           (vs) "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/target/debug/.fingerprint/rusty_lucene_core-8590400dd42b2c33/dep-test-lib-rusty_lucene_core"
+   0.334682375s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 1785449778, nanos: 321042199 } < FileTime { seconds: 1785450606, nanos: 386767398 }
+   0.334730791s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint: fingerprint dirty for rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core)/Check { test: true }/TargetInner { name_inferred: true, ..: lib_target("rusty_lucene_core", ["lib"], "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/src/lib.rs", Edition2024) }
+   0.334735458s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="rusty_lucene_core"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/target/debug/.fingerprint/rusty_lucene_core-8590400dd42b2c33/dep-test-lib-rusty_lucene_core", reference_mtime: FileTime { seconds: 1785449778, nanos: 321042199 }, stale: "/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/src/lib.rs", stale_mtime: FileTime { seconds: 1785450606, nanos: 386767398 } }))
+   0.334935750s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="placeholder_test"}: cargo::core::compiler::fingerprint: fingerprint error for rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core)/Check { test: true }/TargetInner { kind: "test", name: "placeholder_test", benched: false, ..: with_path("/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/tests/placeholder_test.rs", Edition2024) }
+   0.334940958s  INFO prepare_target{force=false package_id=rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core) target="placeholder_test"}: cargo::core::compiler::fingerprint:     err: failed to read `/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core/target/debug/.fingerprint/rusty_lucene_core-52b4fd03f9c23dd4/test-integration-test-placeholder_test`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: <std::backtrace::Backtrace>::create
+   1: <std::io::error::Error as anyhow::context::ext::StdError>::ext_context::<alloc::string::String>
+   2: cargo_util::paths::read
+   3: cargo::core::compiler::fingerprint::prepare_target
+   4: cargo::core::compiler::compile
+   5: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   6: cargo::ops::cargo_compile::compile_ws
+   7: cargo::ops::cargo_compile::compile_with_exec
+   8: cargo::ops::cargo_compile::compile
+   9: cargo::commands::check::exec
+  10: <cargo::cli::Exec>::exec
+  11: cargo::cli::main
+  12: cargo::main
+  13: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  14: std::rt::lang_start::<()>::{closure#0}
+  15: std::rt::lang_start_internal
+  16: _main
+    Checking rusty_lucene_core v0.1.0 (/Users/aaronmcohen/Projects/rusty_lucene/rusty_lucene_core)
+error: could not compile `rusty_lucene_core` (lib test) due to 2 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `rusty_lucene_core` (lib) due to 2 previous errors

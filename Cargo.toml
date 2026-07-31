@@ -1,0 +1,8 @@
+[package]
+name = "rusty_lucene"
+version = "0.1.0"
+edition = "2021"
+
+# Workspace containing the core crate
+[workspace]
+members = ["rusty_lucene_core"]
