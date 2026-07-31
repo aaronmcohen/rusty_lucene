@@ -1,6 +1,6 @@
 # Rusty Lucene Constitution
 
-## 🎯 Core Principles
+## 💀 Core Principles
 
 ### Minimal Dependency Baseline
 * **Strict Limits**: Project dependencies are restricted to essential libraries.
@@ -12,7 +12,7 @@
 * **Traceability**: Reference associated tickets or issue numbers in descriptions.
 * **Linear History**: Rebase feature branches before merging to eliminate merge commits.
 
-## 🛠️ Development Workflow
+## 🔧 Development Workflow
 
 ### Specification & Feature Branching
 * **Isolation**: Author all new specifications and features on dedicated branches (e.g., `spec/issue-123`).
@@ -50,8 +50,7 @@
 * **Tracking**: Maintain a `CHANGELOG.md` entry for every operational change.
 
 ### Compliance Enforcement
-* **Automation**: Use local pre-commit hooks or aliases to enforce commit structures.
+* **Automation**: Use local pre‑commit hooks or aliases to enforce commit structures.
 * **Weekly Audits**: Periodically verify that the history remains clean and linear.
 
-
-**Version**: 1.0.3 | **Ratified**: 2025-06-18 | **Last Amended**: 2026-06-20
+**Version**: 1.0.4 | **Ratified**: 2025-06-18 | **Last Amended**: 2026-07-30
