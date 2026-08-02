@@ -1,3 +1,3 @@
-//! Placeholder module for utility helpers.
+# Re-export weak_identity_map for convenience
 
-// Future implementations will go here.
+pub use self::weak_identity_map::WeakIdentityMap;
