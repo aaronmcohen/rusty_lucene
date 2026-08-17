@@ -1,0 +1,24 @@
+# Load the official foundational Granite 4.1 8B weights via Hugging Face
+FROM ibm/granite4.1:8b
+
+# --- MACBOOK PRO M3 36GB RAM PERFORMANCE OPTIMIZATIONS ---
+# Pins heavy matrix math strictly across Apple Silicon performance cores
+PARAMETER num_thread 8
+
+# Sets context window to 32k. Fits perfectly within 36GB unified memory without swapping
+PARAMETER num_ctx 32768
+
+# Sets the max token prediction pool size for deep code block outputs
+PARAMETER num_predict 4096
+
+# Optimizes output for predictable tool calls and precise technical syntax
+PARAMETER temperature 0.2
+PARAMETER top_p 0.95
+
+# --- BASE ENGINEERING PERSONALITY ---
+SYSTEM """
+You are a local autonomous OpenCode AI software engineer running natively on an M3 MacBook Pro laptop.
+Your priority is generating clean, deterministic code while selectively using localized toolchains.
+Always format file edits as clean unified diff patches. Never rewrite unchanged boilerplate.
+"""
+

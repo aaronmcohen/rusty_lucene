@@ -1,0 +1,51 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "lsp": {
+    "rust": {
+      "command": ["rust-analyzer"],
+      "extensions": [".rs"],
+      "env": {
+        "RUST_LOG": "debug"
+      }
+    },
+    "markdown": {
+      "command": ["marksman", "server"],
+      "extensions": [".md", ".markdown"]
+    },
+    "yaml": {
+      "command": ["yaml-language-server", "--stdin"],
+      "extensions": [".yaml", ".yml"]
+    },
+    "json": {
+      "command": ["vscode-json-languageserver", "--stdin"],
+      "extensions": [".json", ".jsonc"]
+    },
+    "java": {
+      "command": ["jdtls"],
+      "extensions": [".java", ".jar"]
+    },
+    "bash": {
+      "command": ["bash-language-server", "start"],
+      "extensions": [".sh", ".bash", ".zsh"]
+    },
+    "makefile": {
+      "command": ["makefile-lsp"],
+      "extensions": ["Makefile", ".mk"]
+    }
+  },
+  "permission": {
+    "bash": "allow",
+    "edit": "allow",
+    "write": "allow",
+    "read": "allow",
+    "webfetch": "allow",
+    "task": "allow",
+    "lsp": "allow",
+    "skill": "allow",
+    "todowrite": "allow",
+    "websearch": "allow",
+    "question": "allow"
+  },
+  "formatter": true
+}
+
