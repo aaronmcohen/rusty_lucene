@@ -1,0 +1,20 @@
+# Ignored directories and files
+
+# Dependency directories
+target/
+
+# Distribution files
+*.d
+
+# Build outputs
+*.obj
+
+# IDEs
+*~
+.DS_Store
+
+# Rust crates
+crates/*.git
+
+# References directory
+references/
