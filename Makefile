@@ -28,4 +28,10 @@ run:
 	cargo run
 
 clean:
+	@if [ -d references/ ]; then \
+		rm -rf references/; \
+		echo "Cleaned references/"; \
+	else \
+		echo "No references/ directory to clean"; \
+	fi
 	cargo clean

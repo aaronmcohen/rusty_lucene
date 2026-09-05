@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "model": "mlx/nightmedia/granite-4.2-8b-mxfp8-mlx",
   "lsp": {
     "rust": {
       "command": ["rust-analyzer"],

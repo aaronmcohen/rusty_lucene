@@ -96,11 +96,6 @@ description: "Task list for Rust Lucene Scaffolding feature"
 
 **Independent Test**: Run `git status` after creating the `references/` directory — it should show it as untracked but not automatically staged.
 
-### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
-
-- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
-
 ### Implementation for User Story 3
 
 - [x] T015 [P] [US3] Verify `.gitignore` contains `references/` pattern
@@ -119,15 +114,15 @@ description: "Task list for Rust Lucene Scaffolding feature"
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T020 [P] Documentation updates in quickstart.md
+- [x] T020 [P] Documentation updates in quickstart.md
   - File path: `/Users/aaronmcohen/Projects/rusty_lucene/specs/001-rust-lucene-scaffolding/quickstart.md`
   - Content: Add quickstart instructions showing how to run `make help` and `make references`
 
-- [ ] T021 [P] Code cleanup and refactoring
+- [x] T021 [P] Code cleanup and refactoring
   - File path: `/Users/aaronmcohen/Projects/rusty_lucene/Makefile`
   - Verification: Makefile is clean, consistent formatting, no redundant checks
 
-- [ ] T022 [P] Run quickstart.md validation
+- [x] T022 [P] Run quickstart.md validation
   - Command: Run `make help` and verify output is clear and concise
   - Verification: Help message lists all targets (`help`, `references`, `build`, etc.)
 

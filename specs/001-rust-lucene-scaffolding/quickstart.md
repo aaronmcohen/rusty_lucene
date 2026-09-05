@@ -6,9 +6,9 @@ A minimal Rust Cargo project scaffold with a Makefile that provides:
 
 - `make` (or `make help`) – shows usage
 - `make references` – clones Apache Lucene (core) to `references/` (git-ignored)
-- `cargo build` – builds the project successfully
-- `cargo test` – runs tests
-- `cargo run` – runs the default binary
+- `cargo build`
+- `cargo test`
+- `cargo run`
 
 The root `Cargo.toml` is a single-crate file with a `[workspace]` placeholder for future sub-crates.
 
@@ -22,10 +22,10 @@ cd /path/to/rust-lucene
 make                    # or: make help
 
 # 3. Build the project
-cargo build --release
+cargo build
 
 # 4. Run the default binary
-cargo run --release
+cargo run
 
 # 5. Clone Lucene reference material
 make references
@@ -35,7 +35,7 @@ git status              # should show references/ as untracked
 git diff --cached .gitignore  # should be empty (references/ not staged)
 
 # 7. Run tests (when applicable)
-cargo test --release
+cargo test
 ```
 
 ## Makefile targets explained
@@ -44,9 +44,9 @@ cargo test --release
 |--------|-------------|
 | `help` (default) | Shows this quickstart usage message |
 | `references` | Clones https://github.com/apache/lucene.git into `references/` with `--depth 1` for speed |
-| `build` | Runs `cargo build --release` |
-| `test` | Runs `cargo test --release` |
-| `run` | Runs `cargo run --release` (default binary) |
+| `build` | Runs `cargo build` |
+| `test` | Runs `cargo test` |
+| `run` | Runs `cargo run` (default binary) |
 | `clean` | Removes `references/` (reference material) |
 
 > Note: `references/` is git-ignored, so it won't be accidentally committed.
