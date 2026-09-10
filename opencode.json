@@ -1,37 +1,94 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "mlx/nightmedia/granite-4.2-8b-mxfp8-mlx",
+  "provider": {
+    "mlx": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "MLX (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:8080/v1"
+      },
+      "models": {
+        "ibm-granite/granite-4.2-8b-bf16-mlx": {
+          "name": "Granite 4.2 8B BF16",
+          "limit": {
+            "context": 16000,
+            "output": 8192
+          }
+        }
+      }
+    }
+  },
   "lsp": {
     "rust": {
-      "command": ["rust-analyzer"],
-      "extensions": [".rs"],
+      "command": [
+        "rust-analyzer"
+      ],
+      "extensions": [
+        ".rs"
+      ],
       "env": {
         "RUST_LOG": "debug"
       }
     },
     "markdown": {
-      "command": ["marksman", "server"],
-      "extensions": [".md", ".markdown"]
+      "command": [
+        "marksman",
+        "server"
+      ],
+      "extensions": [
+        ".md",
+        ".markdown"
+      ]
     },
     "yaml": {
-      "command": ["yaml-language-server", "--stdin"],
-      "extensions": [".yaml", ".yml"]
+      "command": [
+        "yaml-language-server",
+        "--stdin"
+      ],
+      "extensions": [
+        ".yaml",
+        ".yml"
+      ]
     },
     "json": {
-      "command": ["vscode-json-languageserver", "--stdin"],
-      "extensions": [".json", ".jsonc"]
+      "command": [
+        "vscode-json-languageserver",
+        "--stdin"
+      ],
+      "extensions": [
+        ".json",
+        ".jsonc"
+      ]
     },
     "java": {
-      "command": ["jdtls"],
-      "extensions": [".java", ".jar"]
+      "command": [
+        "jdtls"
+      ],
+      "extensions": [
+        ".java",
+        ".jar"
+      ]
     },
     "bash": {
-      "command": ["bash-language-server", "start"],
-      "extensions": [".sh", ".bash", ".zsh"]
+      "command": [
+        "bash-language-server",
+        "start"
+      ],
+      "extensions": [
+        ".sh",
+        ".bash",
+        ".zsh"
+      ]
     },
-    "makefile": {
-      "command": ["makefile-lsp"],
-      "extensions": ["Makefile", ".mk"]
+    "checkmake": {
+      "command": [
+        "checkmake",
+        "--format=lsp"
+      ],
+      "extensions": [
+        ".mk",
+        "Makefile"
+      ]
     }
   },
   "permission": {
@@ -49,4 +106,3 @@
   },
   "formatter": true
 }
-

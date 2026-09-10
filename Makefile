@@ -19,10 +19,10 @@ references:
 	@echo "Lucene repository cloned to references/"
 
 build:
-	cargo build
+	cargo build --workspace
 
 test:
-	cargo test
+	cargo test --workspace
 
 run:
 	cargo run
