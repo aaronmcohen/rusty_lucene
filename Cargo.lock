@@ -3,9 +3,9 @@
 version = 4
 
 [[package]]
-name = "lucene-core"
+name = "rust-lucene"
 version = "0.1.0"
 
 [[package]]
-name = "rust-lucene"
+name = "rusty-lucene-core"
 version = "0.1.0"
