@@ -1,6 +1,9 @@
 //! Lucene core crate
 //! Simple placeholder that compiles
 
+use std::ffi::{CStr, CString};
+use std::os::raw::{c_char, c_int, c_float};
+
 mod analysis;
 
 pub struct IndexableField {
@@ -67,4 +70,30 @@ mod tests {
         assert!(map.contains_key_ca(b"hello"));
         assert!(map.contains_key_ca(b"HELLO"));
     }
+}
+
+// Native functions for JNI
+#[no_mangle]
+pub extern "C" fn search(query: *const c_char, len: c_int) -> c_int {
+    // Simple implementation: return number of matching fields (mock)
+    // query is a C string (null-terminated), len is length in bytes
+    if query.is_null() { return 0; }
+    let c_str = unsafe { CStr::from_ptr(query) };
+    let query_str = c_str.to_string_lossy().to_string();
+    // Very simple mock: always return 1 for non-empty query
+    if !query_str.is_empty() { 1 } else { 0 }
+}
+
+#[no_mangle]
+pub extern "C" fn rank(id: c_int, score: c_float) -> c_float {
+    // Simple implementation: return normalized score (mock)
+    score * 0.5
+}
+
+// JNI-incompatible type example (will be documented, not exported)
+#[no_mangle]
+pub extern "C" fn get_complex_enum(state: *const c_char) -> c_int {
+    // This function uses a Rust enum with data payload which has no natural Java equivalent
+    // It will be documented as JNI-incompatible in the Java wrapper README
+    42
 }

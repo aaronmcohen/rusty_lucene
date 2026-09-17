@@ -114,5 +114,5 @@ This engine natively utilizes Granite 4.2's `<think>` chain-of-thought architect
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan
-at specs/001-rust-lucene-scaffolding/plan.md
+at specs/002-jni-wrappers/plan.md
 <!-- SPECKIT END -->

@@ -1,0 +1,124 @@
+plugins {
+    id 'java'
+}
+
+sourceSets {
+    main {
+        java.srcDirs = ['src/main/java']
+        jni.srcDirs = ['src/main/cpp']
+    }
+}
+
+// Copy Rust's native headers if they exist (they don't currently, but the cpp file includes jni.h from JDK)
+sourceSets.main.java.srcDirs += files('src/main/cpp')
+
+// The JNI library output path depends on platform
+def nativeOutputFile = layout.buildDirectory.dir('native').get().get().path + "/rusty_lucene_jni"
+def nativeOutputFileDir = layout.buildDirectory.dir('native').get().get().path
+
+// Determine library extension
+def libext = System.getProperty('os').startsWith('mac') ? '.dylib' : '.so'
+nativeOutputFile = nativeOutputFileDir + '/' + 'rusty_lucene_jni' + libext
+
+task nativeCompile(type: Exec) {
+    description "Compile JNI C++ source against Rust library"
+    groups = ['verification', 'build']
+    dependsOn compileJava
+    
+    doLast {
+        def rustLibDir = layout.projectDir.parent.get().get().absolutePath + "/target/release"
+        def libName = "librusty_lucene_core"
+        def libExt = System.getProperty('os').startsWith('mac') ? '.dylib' : '.so'
+        def libPath = rustLibDir + '/' + libName + libExt
+        
+        def cppDir = directory('src/main/cpp')
+        def cppFile = directory('src/main/cpp/rusty_lucene_jni.cpp')
+        
+        def os = System.getProperty('os')
+        if (os?.startsWith?('mac')) {
+            // macOS uses dynamic library (.dylib)
+            def cmd = [
+                'g++', '-dynamiclib', '-o', nativeOutputFile,
+                cppFile.get().absolutePath,
+                '-L', rustLibDir, '-lrusty_lucene_core',
+            ]
+            args = cmd
+            executable = 'g++'
+        } else if (os?.startsWith?('linux')) {
+            // Linux uses shared library (.so)
+            def cmd = [
+                'g++', '-shared', '-o', nativeOutputFile,
+                cppFile.get().absolutePath,
+                '-L', rustLibDir, '-lrusty_lucene_core',
+            ]
+            args = cmd
+            executable = 'g++'
+        } else if (os?.startsWith?('windows')) {
+            // Windows would use cl.exe or link.exe; not needed for this task
+            echo 'Native compilation not implemented for Windows'
+            return
+        } else {
+            echo "Unknown OS: $os"
+            return
+        }
+    }
+}
+
+tasks.named('assemble').configure {
+    dependsOn nativeCompile
+}
+
+// Copy the native library next to the Java runtime for testing
+task copyNativeLib(type: Copy) {
+    description "Copy native JNI library for test loading"
+    from {
+        if (tasks.nativeCompile.executable) {
+            // After nativeCompile runs, the library exists at nativeOutputFile
+            file(nativeOutputFile).get().absolutePath
+        }
+    }
+    into layout.buildDirectory.dir('libs')  // for test classpath
+    doLast {
+        // On macOS, rename .dylib to .so or keep as .dylib; JNI loader will find it by name
+    }
+}
+
+// Test task that loads the JNI library
+task nativeTest(type: JavaTest) {
+    classpath = sourceSets.main.runtimeClasspath
+    testClassesDirs = sourceSets.main.testOutputDirectory
+    
+    // Set LD_LIBRARY_PATH or DYLD_LIBRARY_PATH for library loading
+    doLast {
+        def jvmArgs = []
+        if (System.getProperty('os').startsWith('mac')) {
+            def libPath = layout.buildDirectory.dir('libs').get().absolutePath
+            // export DYLD_LIBRARY_PATH
+            env DYLD_LIBRARY_PATH = libPath
+        } else if (System.getProperty('os').startsWith('linux')) {
+            def libPath = layout.buildDirectory.dir('libs').get().absolutePath
+            // export LD_LIBRARY_PATH
+            env LD_LIBRARY_PATH = libPath
+        }
+        
+        // Pass JVM args for native library loading
+        jvmArgs.add("-Djava.library.path=${layout.buildDirectory.dir('libs').get().absolutePath}")
+        tests.each { testSpec ->
+            testSpec.jvmArgs(jvmArgs)
+        }
+    }
+}
+
+// Simple validation task
+task validate(type: Exec) {
+    description "Validate JNI wrapper builds and links correctly"
+    dependsOn nativeCompile
+    
+    doLast {
+        if (new File(nativeOutputFile).exists()) {
+            echo "✓ JNI native library built: $nativeOutputFile"
+        } else {
+            throw new GradleException("Native library not built: $nativeOutputFile")
+        }
+    }
+}

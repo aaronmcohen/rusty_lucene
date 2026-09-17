@@ -7,5 +7,12 @@ name = "rust-lucene"
 version = "0.1.0"
 
 [[package]]
+name = "rusty-lucene-common"
+version = "0.1.0"
+
+[[package]]
 name = "rusty-lucene-core"
 version = "0.1.0"
+dependencies = [
+ "rusty-lucene-common",
+]

@@ -4,3 +4,4 @@ pub const A_TO_Z_LOWER_OFFSET: u8 = 32;
 
 pub mod char_array_map;
 pub mod char_array_set;
+pub mod char_filter;

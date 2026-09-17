@@ -3,4 +3,9 @@ name = "rusty-lucene-core"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "rusty_lucene_core"
+crate-type = ["cdylib"]
+
 [dependencies]
+rusty-lucene-common = { path = "../rusty-lucene-common" }
