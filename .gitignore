@@ -1,0 +1,26 @@
+# Rust
+target/
+debug/
+release/
+*.rs.bk
+*.rlib
+*.prof*
+.idea/
+*.log
+.env*
+Cargo.lock
+*.swp
+.DS_Store
+
+# IDE
+.vscode/
+*.code-workspace
+.idea/
+*.iml
+
+# Build artifacts
+*.o
+*.so
+*.a
+*.exe
+*.dll
